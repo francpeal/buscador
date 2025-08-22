@@ -1,0 +1,5 @@
+Django>=5.2,<6.0
+djangorestframework>=3.16
+psycopg2-binary>=2.9
+python-dotenv>=1.1
+elasticsearch>=9.1,<10
