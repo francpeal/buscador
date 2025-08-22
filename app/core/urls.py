@@ -16,7 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from search.api import search_items, search_clients, suggest_items, suggest_clients
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("api/search/items", search_items),
+    path("api/search/clients", search_clients),
+    path("api/suggest/items", suggest_items),
+    path("api/suggest/clients", suggest_clients),
 ]
