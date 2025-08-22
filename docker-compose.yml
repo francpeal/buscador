@@ -23,6 +23,20 @@ services:
       elastic:
         condition: service_healthy
 
+  web:
+    build: ./app
+    command: bash -lc "python manage.py runserver 0.0.0.0:8000"
+    env_file: .env
+    depends_on:
+      elastic:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8000:8000"   # solo accesible localmente (usa túnel para verlo desde fuera)
+    volumes:
+      - ./app:/app
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # para llegar a Postgres del host
+
 
 volumes:
   esdata:
