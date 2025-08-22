@@ -1,7 +1,6 @@
-version: "3.9"
 services:
   elastic:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.2
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -16,7 +15,7 @@ services:
       - esdata:/usr/share/elasticsearch/data
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.13.4
+    image: docker.elastic.co/kibana/kibana:9.1.2
     environment:
       - ELASTICSEARCH_HOSTS=http://elastic:9200
     ports: ["5601:5601"]
@@ -24,20 +23,6 @@ services:
       elastic:
         condition: service_healthy
 
-  web:
-    build: ./app
-    command: bash -lc "python manage.py runserver 0.0.0.0:8000"
-    env_file: .env
-    depends_on:
-      db:
-        condition: service_healthy
-      elastic:
-        condition: service_healthy
-    ports: ["8000:8000"]
-    volumes:
-      - ./app:/app
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
 volumes:
   esdata:
