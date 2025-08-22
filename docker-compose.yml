@@ -36,7 +36,7 @@ services:
       - ./app:/app
     extra_hosts:
       - "host.docker.internal:host-gateway"  # para llegar a Postgres del host
-
+    restart: unless-stopped
 
 volumes:
   esdata:
