@@ -25,6 +25,6 @@ urlpatterns = [
     path("api/suggest/items", suggest_items),
     path("api/suggest/clients", suggest_clients),
 
-    # path("api/items/<str:codigo>", item_detail),
-    # path("api/clients/<str:cliente_id>", client_detail),
+    path("api/items/<str:codigo>", item_detail),
+    path("api/clients/<str:cliente_id>", client_detail),
 ]
